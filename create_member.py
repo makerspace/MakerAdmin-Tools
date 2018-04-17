@@ -3,6 +3,8 @@ import requests
 import argparse
 import csv
 import json
+from datatime import datetime, timezone
+import pytz
 
 # Read the .env file
 env = {s[0]: (s[1] if len(s) > 1 else "") for s in (s.split("=") for s in open(".env").read().split('\n'))}
@@ -82,8 +84,8 @@ while possible_new_members:
                 name_split = new_member_request["name"].split(" ",1)
                 new_member_request["firstname"] = name_split[0]
                 new_member_request["lastname"] = name_split[1]
-                new_member_request["created_at"] = "2018-04-15"
-                new_member_request["updated_at"] = "2018-04-15"
+                new_member_request["created_at"] = datetime.now(timezone.utc).isoformat()
+                new_member_request["updated_at"] = datetime.now(timezone.utc).isoformat()
                 print(json.dumps(new_member_request,indent=4));
                 confirm_create = input("Do you really wish to create the above member? ('y' to create)")
                 if confirm_create and confirm_create[0].lower() == 'y':
