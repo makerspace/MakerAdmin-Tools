@@ -3,7 +3,7 @@ import requests
 import argparse
 import csv
 import json
-from datatime import datetime, timezone
+from datetime import datetime, timezone
 
 # Read the .env file
 env = {s[0]: (s[1] if len(s) > 1 else "") for s in (s.split("=") for s in open(".env").read().split('\n'))}
